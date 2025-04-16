@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # bloc_calculator
 
 This is a basic bloc logic implemented calculator
@@ -16,5 +16,3 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 =======
-# bloc_calculator
->>>>>>> 307034562522a09252d3ac1706b7e56a0955dd9f
