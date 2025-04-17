@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/bloc/calculator_bloc.dart';
+import '../../../core/event/calculator_event.dart';
+import '../../../core/state/calculator_state.dart';
 
 class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
@@ -12,24 +17,19 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
   String _result = "";
 
   void _onButtonPressed(String buttonText) {
-    setState(() {
-      if (buttonText == "C") {
-        _output = "0";
-        _result = "";
-      } else if (buttonText == "⌫") {
-        _output = _output.length > 1 ? _output.substring(0, _output.length - 1) : "0";
-      } else if (buttonText == "=") {
-        _result = _calculateResult();
-      } else {
-        _output = _output == "0" ? buttonText : _output + buttonText;
-      }
-    });
+    if (buttonText == "C") {
+      context.read<CalculatorBloc>().add(ClearPressed());
+    } else if (buttonText == "⌫") {
+      context.read<CalculatorBloc>().add(DeletePressed());
+    } else if (buttonText == "=") {
+      context.read<CalculatorBloc>().add(CalculateResultPressed());
+    } else if (["+", "-", "×", "÷"].contains(buttonText)) {
+      context.read<CalculatorBloc>().add(OperatorPressed(buttonText));
+    } else {
+      context.read<CalculatorBloc>().add(NumberPressed(buttonText));
+    }
   }
 
-  String _calculateResult() {
-    // Add your calculation logic here
-    return "= ${_output}";
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +42,23 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
             child: Container(
               alignment: Alignment.bottomRight,
               padding: EdgeInsets.all(24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    _output,
-                    style: TextStyle(fontSize: 48, color: Colors.white),
-                  ),
-                  Text(
-                    _result,
-                    style: TextStyle(fontSize: 32, color: Colors.grey),
-                  ),
-                ],
+              child: BlocBuilder<CalculatorBloc, CalculatorState>(
+                builder: (context, state) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        '${state.input1}${state.operator}${state.input2}',
+                        style: TextStyle(fontSize: 48, color: Colors.white),
+                      ),
+                      Text(
+                        state.result,
+                        style: TextStyle(fontSize: 32, color: Colors.grey),
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
           ),
@@ -66,7 +70,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
               mainAxisSpacing: 12,
               crossAxisSpacing: 12,
               children: [
-                _buildButton("C", Colors.grey),
+                _buildButton("C", Colors.red),
                 _buildButton("⌫", Colors.grey),
                 _buildButton("%", Colors.grey),
                 _buildButton("÷", Colors.orange),
