@@ -1,7 +1,5 @@
 <p align="center">
   <img src="https://storage.googleapis.com/cms-storage-bucket/0dbfcc7a59cd1cf16282.png" alt="Flutter" width="120">
-  <br>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" width="100">
 </p>
 
 <h1 align="center">🧮 Flutter Calculator App</h1>
@@ -15,8 +13,6 @@
   <a href="https://flutter.dev"><img alt="Flutter" src="https://img.shields.io/badge/Flutter-Framework-blue?logo=flutter"></a>
   <a href="https://github.com/subhankarmanna/bloc_calculator"><img alt="GitHub repo" src="https://img.shields.io/badge/Repo-subhankarmanna/bloc_calculator-black?logo=github"></a>
 </p>
-
-<p align="center"><i>Powered by <strong>Flutter</strong>, created by <strong>Google</strong> 💙</i></p>
 
 ---
 
