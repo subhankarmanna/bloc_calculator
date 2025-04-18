@@ -29,7 +29,6 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   flutter_bloc: ^9.1.0
-  math_expressions: ^2.7.0
   flutter:
     sdk: flutter
 
