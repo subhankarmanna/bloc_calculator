@@ -23,7 +23,7 @@ class _CalculatorScreenState extends State<CalculatorScreen> {
       context.read<CalculatorBloc>().add(DeletePressed());
     } else if (buttonText == "=") {
       context.read<CalculatorBloc>().add(CalculateResultPressed());
-    } else if (["+", "-", "×", "÷"].contains(buttonText)) {
+    } else if (["+", "-", "×", "÷", "%"].contains(buttonText)) {
       context.read<CalculatorBloc>().add(OperatorPressed(buttonText));
     } else {
       context.read<CalculatorBloc>().add(NumberPressed(buttonText));

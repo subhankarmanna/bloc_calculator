@@ -56,10 +56,9 @@ class CalculatorBloc extends Bloc<CalculatorEvent, CalculatorState> {
             result = b != 0 ? a / b : 0;
             break;
           case '%':
-            final intA = 10 ?? 0;
-            final intB = 3 ?? 1;
-            final outc = intB != 0 ? intA % intB : 0;
-            result = outc.toDouble();
+            final intA = int.tryParse(state.input1) ?? 0;
+            final intB = int.tryParse(state.input2) ?? 1;
+            result = intB != 0 ? (intA % intB).toDouble() : 0;
             break;
         }
         emit(state.copyWith(result: '= $result'));
